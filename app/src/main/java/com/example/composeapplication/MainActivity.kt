@@ -9,9 +9,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.setContent
-import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
@@ -29,17 +27,10 @@ class MainActivity : AppCompatActivity() {
 
     @Composable
     fun NewsStory() {
-        val image = imageResource(id = R.drawable.header)
         MaterialTheme {
-
             Column(
                 modifier = Modifier.padding(16.dp)
             ) {
-                val imageModifier = Modifier
-                    .preferredHeight(180.dp)
-                    .fillMaxWidth()
-                    .clip(shape = RoundedCornerShape(28.dp))
-
                 ExploreImageContainer {
                     GlideImage("https://www.xda-developers.com/files/2018/07/Android-Jetpack-featured.png") {
                         centerCrop()
@@ -49,8 +40,8 @@ class MainActivity : AppCompatActivity() {
                 Spacer(modifier = Modifier.preferredHeight(16.dp))
 
                 Text(
-                    text = "A Day in the life of an Android Dev" +
-                            " when COVID-19 strikes, there's no need to panic. aight?",
+                    text = "A Day in the life of an Android Dev " +
+                            "when COVID-19 strikes, there's no need to panic. All right?",
                     style = typography.h6,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis
@@ -63,7 +54,10 @@ class MainActivity : AppCompatActivity() {
 
     @Composable
     private fun ExploreImageContainer(children: @Composable () -> Unit) {
-        Surface(Modifier.preferredHeight(height = 240.dp).fillMaxWidth(), RoundedCornerShape(16.dp)) {
+        Surface(
+            Modifier.preferredHeight(height = 240.dp).fillMaxWidth(),
+            RoundedCornerShape(16.dp)
+        ) {
             children()
         }
     }
